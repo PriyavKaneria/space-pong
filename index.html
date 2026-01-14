@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1024, user-scalable=no">
+    <title>Event Horizon Pong</title>
+    <meta name="description"
+        content="A visually stunning space pong game with black hole physics and gravitational lensing effects">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="https://umami.priyavkaneria.com/script.js"
+        data-website-id="ec878fcd-1d23-4759-ba50-acbe6b04ba9d"></script>
+</head>
+
+<body>
+    <!-- Canvas Layers -->
+    <div id="game-container">
+        <!-- Background stars (rendered to texture) -->
+        <canvas id="backgroundCanvas"></canvas>
+
+        <!-- WebGL shader output (gravitational lensing) -->
+        <canvas id="warpCanvas"></canvas>
+
+        <!-- Main game canvas (paddle, ball, black hole) -->
+        <canvas id="gameCanvas"></canvas>
+    </div>
+
+    <!-- HUD Overlay -->
+    <div id="hud">
+        <!-- Corner Decorations -->
+        <div class="corner-decor top-left"></div>
+        <div class="corner-decor top-right"></div>
+        <div class="corner-decor bottom-left"></div>
+        <div class="corner-decor bottom-right"></div>
+
+        <!-- Music Toggle -->
+        <button id="music-toggle" title="Toggle Music">🔊</button>
+
+        <!-- GitHub Star Link -->
+        <a id="github-link" href="https://github.com/PriyavKaneria/space-pong" target="_blank"
+            title="Star on GitHub">⭐</a>
+
+        <!-- Title Section -->
+        <div id="title-section">
+            <h1 id="game-title">SPACE PONG</h1>
+            <p id="subtitle">EVENT HORIZON • SINGLE PLAYER</p>
+        </div>
+
+        <!-- Score Section -->
+        <div id="score-section">
+            <div id="score-label">SCORE</div>
+            <div id="score-display">0</div>
+            <div id="highscore-label">BEST</div>
+            <div id="highscore-display">0</div>
+        </div>
+
+        <!-- Energy Bar -->
+        <div id="energy-section">
+            <div id="energy-label">ENERGY LEVEL</div>
+            <div id="energy-bar-container">
+                <div id="energy-bar"></div>
+            </div>
+        </div>
+
+        <!-- Status Indicators -->
+        <div id="status-indicators">
+            <div class="status-dot"></div>
+            <div class="status-dot"></div>
+            <div class="status-dot"></div>
+        </div>
+
+        <!-- Start Message -->
+        <div id="start-msg">
+            <div class="main-text desktop-text">CLICK TO RELEASE</div>
+            <div class="main-text mobile-text">TAP TO RELEASE</div>
+            <div class="sub-text desktop-text">Mouse to move paddle • Arrows for fine control</div>
+            <div class="sub-text mobile-text">Drag to move paddle</div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="game-over-screen">
+            <div id="game-over-title">EVENT HORIZON CONSUMED YOU</div>
+            <div id="final-score">0</div>
+            <div id="new-highscore" style="display: none;">NEW HIGH SCORE!</div>
+
+            <!-- Name Input for Leaderboard -->
+            <div id="name-input-container" style="display: none;">
+                <input type="text" id="player-name" placeholder="Enter your name" maxlength="20" autocomplete="off">
+                <button id="submit-score-btn">SUBMIT TO LEADERBOARD</button>
+            </div>
+            <div id="submit-status"></div>
+
+            <!-- Leaderboard Display -->
+            <div id="leaderboard-container">
+                <div id="leaderboard-title">🏆 TOP 10</div>
+                <div id="leaderboard-list">
+                    <div class="leaderboard-loading">Loading...</div>
+                </div>
+            </div>
+
+            <div id="restart-hint">CLICK OR PRESS SPACE TO RESTART</div>
+        </div>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="music.ogg" type="audio/ogg" credits="Section 31 -Tech (http://s31tech.org)">
+    </audio>
+
+    <!-- Scripts -->
+    <script src="shaders.js#1.3"></script>
+    <script src="game.js#1.3"></script>
+</body>
+
+</html>
